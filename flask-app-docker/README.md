@@ -72,7 +72,7 @@ cd flask-app-docker
 
 ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T2-git-clone.png)
 
-## 5. Create a Dockerfile**
+## 5. Create a Dockerfile
 
 Create a file named `Dockerfile` in the same directory and add the following content:
 
@@ -96,10 +96,9 @@ docker build -t flask-app-docker:latest .
 ```bash
 docker run -d -p 4000:4000 flask-app-docker:latest
 ```
+The -d flag runs the container in detached mode, and -p 4000:4000 maps port 4000 of the container to port 4000 on the EC2 instance.
 
 ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T5-docker-run.png)
-
-The -d flag runs the container in detached mode, and -p 4000:4000 maps port 4000 of the container to port 4000 on the EC2 instance.
 
 **List the running Docker containers**:
 
@@ -130,15 +129,21 @@ If you can't access the Flask app, ensure that your EC2 security group allows in
 ## 8. Push the image to a public or private repository (e.g. Docker Hub)
 
 To push the image to Docker Hub, you need to tag it with your Docker Hub username and repository name, then push it.
-   - **1. Tag the Image**
+   **1. Tag the Image**:
+ ```bash
+ docker tag flask-app-docker:latest rutvikmangukiya/flask-app-docker:latest
+ ```
 
       ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T8-docker-tag.png)
 
-   - **2. Push the Image**
+   **2. Push the Image**:
+ ```bash
+ docker push rutvikmangukiya/flask-app-docker:latest
+ ```
 
       ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T9-Dcoker-push.png)
 
-   - **3. Check your profile at Docker Hub Webpage**
+   **3. Check your profile at Docker Hub Webpage**:
 
       ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T10-dockerhub.png)
 

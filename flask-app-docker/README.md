@@ -129,6 +129,7 @@ If you can't access the Flask app, ensure that your EC2 security group allows in
 ## 8. Push the image to a public or private repository (e.g. Docker Hub)
 
 To push the image to Docker Hub, you need to tag it with your Docker Hub username and repository name, then push it.
+
 **1. Tag the Image**:
  ```bash
  docker tag flask-app-docker:latest rutvikmangukiya/flask-app-docker:latest

@@ -70,19 +70,35 @@ git clone https://github.com/RutvikMangukiya/flask-app-docker.git
 cd flask-app-docker
 ```
 
-## 5. Build and Run the Docker Container
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T2-git-clone.png)
+
+## 5. Create a Dockerfile**
+
+Create a file named `Dockerfile` in the same directory and add the following content:
+
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T3.1-vim-dockerfile.png)
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T3-New-dockerfile.png)
+
+## 6. Build the image using the Dockerfile and run the container
 
 **Build the Docker image**:
+  - To build the Docker image, run the following command in the directory containing the Dockerfile:
 
 ```bash
 docker build -t flask-app-docker:latest .
 ```
 
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T4-docker-build.png)
+
 **Run the Docker container**:
+  - To run the container, use the following command:
 
 ```bash
 docker run -d -p 4000:4000 flask-app-docker:latest
 ```
+
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T5-docker-run.png)
+
 The -d flag runs the container in detached mode, and -p 4000:4000 maps port 4000 of the container to port 4000 on the EC2 instance.
 
 **List the running Docker containers**:
@@ -90,6 +106,7 @@ The -d flag runs the container in detached mode, and -p 4000:4000 maps port 4000
 ```bash
 docker ps
 ```
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T6-docker-ps.png)
 
 ## 6. Access the Flask App
 Once the Docker container is running, open a browser and navigate to:
@@ -97,6 +114,7 @@ Once the Docker container is running, open a browser and navigate to:
 ```bash
 http://<EC2_PUBLIC_IP>:4000
 ```
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T7-output.png)
 You should now see your Flask app running!
 
 ## 7. Configure Security Groups (if required)
@@ -109,3 +127,19 @@ If you can't access the Flask app, ensure that your EC2 security group allows in
     - **Port range**: 4000
     - **Source**: 0.0.0.0/0 (to allow public access)
 
+## 8. Push the image to a public or private repository (e.g. Docker Hub)
+
+To push the image to Docker Hub, you need to tag it with your Docker Hub username and repository name, then push it.
+   - **1. Tag the Image**
+
+      ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T8-docker-tag.png)
+
+   - **2. Push the Image**
+
+      ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T9-Dcoker-push.png)
+
+   - **3. Check your profile at Docker Hub Webpage**
+
+      ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T10-dockerhub.png)
+
+      ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T10-Dockerhub-2.png)

@@ -129,22 +129,22 @@ If you can't access the Flask app, ensure that your EC2 security group allows in
 ## 8. Push the image to a public or private repository (e.g. Docker Hub)
 
 To push the image to Docker Hub, you need to tag it with your Docker Hub username and repository name, then push it.
-   **1. Tag the Image**:
+**1. Tag the Image**:
  ```bash
  docker tag flask-app-docker:latest rutvikmangukiya/flask-app-docker:latest
  ```
 
-      ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T8-docker-tag.png)
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T8-docker-tag.png)
 
-   **2. Push the Image**:
+**2. Push the Image**:
  ```bash
  docker push rutvikmangukiya/flask-app-docker:latest
  ```
 
-      ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T9-Dcoker-push.png)
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T9-Dcoker-push.png)
 
-   **3. Check your profile at Docker Hub Webpage**:
+**3. Check your profile at Docker Hub Webpage**:
 
-      ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T10-dockerhub.png)
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T10-dockerhub.png)
 
-      ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T10-Dockerhub-2.png)
+![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T10-Dockerhub-2.png)

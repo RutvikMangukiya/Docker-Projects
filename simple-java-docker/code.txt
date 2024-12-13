@@ -1,0 +1,43 @@
+  1   git clone https://github.com/RutvikMangukiya/simple-java-docker.git
+  2   cd simple-java-docker/
+  3   ls
+  4   cd src
+  5   ls
+  6   vim Dockerfile
+  7   cd ..
+  8   ls
+  9   clear
+  10  cd simple-java-docker/
+  11  ls
+  12  clear
+  13  docker build -t java:latest .
+  14  clear
+  15  docker ps
+  16  docker images
+  17  docker run java:latest
+  18  ls
+  19  vim src/
+  20  ls
+  21  cd simple-java-docker/
+  22  ls
+  23  cd src
+  24  ls
+  25  clear
+  26  ls
+  27  vim Main.java 
+  28  cat Main.java
+  29  cd ..
+  30  ls
+  31  clear
+  32  docker build -t java:v1 .
+  33  docker ps
+  34  docker images
+  35  clear
+  36  docker run java:v1
+  37  docker run java:latest
+  38  docker tag java:latest rutvikmangukiya/simple-java-docker
+  39  docker push rutvikmangukiya/simple-java-docker
+  40  docker images
+  41  clear
+  42  docker tag java:v1 rutvikmangukiya/simple-java-docker:v1
+  43  docker push rutvikmangukiya/simple-java-docker:v1

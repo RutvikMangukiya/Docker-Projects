@@ -140,6 +140,7 @@ To push the image to Docker Hub, you need to tag it with your Docker Hub usernam
 **2. Push the Image**:
  ```bash
  docker push rutvikmangukiya/flask-app-docker:latest
+ docker login
  ```
 
 ![image](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-app-docker/image/T9-Dcoker-push.png)

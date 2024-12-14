@@ -1,6 +1,6 @@
 # Docker Compose: Django Notes App
 
-- Docker makes deploying applications simple and efficient by containerizing your application and its dependencies. This document is a walkthrough for building and deploying a Django-based notes application with MySQL as the database, orchestrated using Docker Compose.
+- Docker makes deploying applications simple and efficient by containerizing your application and its dependencies. This document is a walkthrough for deploying a Django-based notes application with MySQL as the database, orchestrated using Docker Compose.
 
 # Application Code Repository
 
@@ -84,7 +84,7 @@ docker-compose up -d --build
 
 ## Step 8: Verify the Output
 
-- Access the application in your browser at http://<ec2-public-ip>:80 to verify that everything is running as expected.
+- Access the application in your browser at `http://<ec2-public-ip>:80` to verify that everything is running as expected.
 
 ![output](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/6-output.png)
 

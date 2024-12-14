@@ -8,10 +8,10 @@
 
 # Prerequisites
 
-- Before diving into the tutorial, ensure you have Docker and Git installed on your machine.
+- Ensure you have Docker and Git installed on your machine.
 
-## Docker File and Docker Compose Setup
-### Step 1: Clone the Project Repository
+# Docker File and Docker Compose Setup
+## Step 1: Clone the Project Repository
 
 - Clone the project from Git Hub.
 
@@ -22,7 +22,7 @@ cd django-notes-app/
 
 ![gitclone](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/1-git-clone.png)
 
-### Step 2: Create a Dockerfile for the Backend
+## Step 2: Create a Dockerfile for the Backend
 
 - Below is the Dockerfile for the Django backend:
 
@@ -30,7 +30,7 @@ cd django-notes-app/
 
 - This Dockerfile specifies a Python 3.9 base image, installs the necessary dependencies, and prepares the Django backend for containerization.
 
-### Step 3: Build the Docker Image
+## Step 3: Build the Docker Image
 
 - Build the Docker image for the notes application.
 
@@ -41,7 +41,7 @@ docker build -t notes-app .
 
 ![dockerbuild](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/2-docker-build-notes-app.png)
 
-### Step 4: Create a Docker Network
+## Step 4: Create a Docker Network
 
 - Create a network for the application containers.
 
@@ -52,7 +52,7 @@ docker network create notes-app -d bridge
 
 ![dockernetwork](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/3-docker-network.png)
 
-### Step 5: Set Up Persistent Storage
+## Step 5: Set Up Persistent Storage
 
 - Create a volume to store MySQL data persistently.
 
@@ -63,7 +63,7 @@ docker volume create mysql-data
 
 ![dockervolume](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/4-docker-volume.png)
 
-### Step 6: Configure Docker Compose
+## Step 6: Configure Docker Compose
 
 - Below is the docker-compose.yml file for orchestrating the application:
 
@@ -71,7 +71,7 @@ docker volume create mysql-data
     
 - This configuration defines services for Nginx, MySQL, and the Django application, ensuring seamless integration.
 
-### Step 7: Run the Application
+## Step 7: Run the Application
 
 - Execute the following command to start the application.
 
@@ -82,13 +82,13 @@ docker-compose up -d --build
 
 ![dockercompose](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/5-docker-compose-up.png)
 
-### Step 8: Verify the Output
+## Step 8: Verify the Output
 
 - Access the application in your browser at http://<ec2-public-ip>:80 to verify that everything is running as expected.
 
 ![output](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/6-output.png)
 
-### Step 9: Test Data Persistence
+## Step 9: Test Data Persistence
 
 - Verify that data persists by stopping and removing containers.
 
@@ -101,6 +101,6 @@ docker-compose down
 
 ### Conclusion
 
-_ Congratulations! You have successfully built and deployed a containerized Django notes application using Docker and Docker Compose. By leveraging Docker’s networking and volume capabilities, you’ve ensured a scalable and persistent application setup.
+- Congratulations! You have successfully built and deployed a containerized Django notes application using Docker and Docker Compose. By leveraging Docker’s networking and volume capabilities, you’ve ensured a scalable and persistent application setup.
 
 - This guide not only demonstrates the power of Docker in modern application development but also provides a foundation for exploring advanced containerization techniques. Happy Learning!

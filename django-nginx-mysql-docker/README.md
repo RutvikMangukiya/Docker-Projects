@@ -1,32 +1,45 @@
-Introduction
+# Docker Compose: Django Notes App
 
-Docker makes deploying applications simple and efficient by containerizing your application and its dependencies. In this guide, we will walk through building a Django-based notes application with MySQL as the database, orchestrated using Docker Compose.
+- Docker makes deploying applications simple and efficient by containerizing your application and its dependencies. In this guide, we will walk through building a Django-based notes application with MySQL as the database, orchestrated using Docker Compose.
+
+# Application Repository
+
+- [App Code](https://github.com/RutvikMangukiya/django-notes-app)
 
 # Prerequisites
 
-Before diving into the tutorial, ensure you have Docker and Git installed on your machine.
+- Before diving into the tutorial, ensure you have Docker and Git installed on your machine.
 
-Step 1: Clone the Project Repository
+## Docker File and Docker Compose Setup
+### Step 1: Clone the Project Repository
 
-1-git-clone.png Clone the project from Git Hub.
+- Clone the project from Git Hub.
 
+```bash
 git clone https://github.com/RutvikMangukiya/django-notes-app.git
 cd django-notes-app/
+```
 
-Step 2: Create a Dockerfile for the Backend
+![gitclone](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/1-git-clone.png)
+
+### Step 2: Create a Dockerfile for the Backend
 
 Below is the Dockerfile for the Django backend:
 
+- [Dockerfile Preview](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/Dockerfile)
 
-This Dockerfile specifies a Python 3.9 base image, installs the necessary dependencies, and prepares the Django backend for containerization.
+- This Dockerfile specifies a Python 3.9 base image, installs the necessary dependencies, and prepares the Django backend for containerization.
 
-Step 3: Build the Docker Image
+### Step 3: Build the Docker Image
 
-2-docker-build-notes-app.png Build the Docker image for the notes application.
+- Build the Docker image for the notes application.
 
+```bash
 docker build -t notes-app .
+```
+- This command creates a Docker image tagged as notes-app. Make sure to run this command in the root directory of your project.
 
-This command creates a Docker image tagged as notes-app. Make sure to run this command in the root directory of your project.
+![dockerbuild](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/2-docker-build-notes-app.png)
 
 Step 4: Create a Docker Network
 

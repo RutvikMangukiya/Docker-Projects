@@ -22,6 +22,8 @@ cd django-notes-app/
 
 ![gitclone](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/django-nginx-mysql-docker/image/1-git-clone.png)
 
+- Both the Dockerfile and docker-compose.yml files have been recreated from scratch after removing the previous versions.
+
 ## Step 2: Create a Dockerfile for the Backend
 
 - Below is the Dockerfile for the Django backend:
@@ -94,6 +96,7 @@ docker-compose up -d --build
 
 ```bash
 docker-compose down
+docker-compose up -d
 ```
 - Restart the containers and ensure the data remains intact, thanks to the mysql-data volume.
 

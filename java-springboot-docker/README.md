@@ -88,15 +88,15 @@ docker images
 
 - In the multi-stage build approach, we separate the build process into two stages, one for compiling the application and another for running it.
 
-- ### Multi-stage Dockerfile Preview:
+### Multi-stage Dockerfile Preview:
 
-[Dockerfile Preview](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/java-springboot-docker/Dockerfile)
+  - [Dockerfile Preview](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/java-springboot-docker/Dockerfile)
 
-- In this setup:
+- **In this setup:**
 
--Stage 1 uses Maven to compile the application and create the JAR file.
+  -Stage 1 uses Maven to compile the application and create the JAR file.
 
--Stage 2 uses a smaller base image (openjdk:17-alpine), which significantly reduces the size of the final image by only including the necessary runtime files.
+  -Stage 2 uses a smaller base image (openjdk:17-alpine), which significantly reduces the size of the final image by only including the necessary runtime files.
 
 ![docker-build](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/java-springboot-docker/image/4-docker-multi-stage-reduced-size.png)
 
@@ -105,15 +105,15 @@ docker images
 - With Docker Compose, we can manage multiple services, such as the Java application and MySQL database, in a single YAML configuration file.
 
 ### Docker-Compose.yml file preview: 
-[Docker-Compose.ymlPreview](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/java-springboot-docker/docker-compose.yml)
+  - [Docker-Compose.yml File](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/java-springboot-docker/docker-compose.yml)
 
-- In this file:
+- **In this file:**
 
--The java_app service is responsible for building and running the Java application.
+  -The java_app service is responsible for building and running the Java application.
 
--The mysql_db service handles the MySQL database and the depends_on keyword ensures that the database container is ready before the Java application starts.
+  -The mysql_db service handles the MySQL database and the depends_on keyword ensures that the database container is ready before the Java application starts.
 
--Health checks are defined to ensure both services are running properly.
+  -Health checks are defined to ensure both services are running properly.
 
 ## Step 5: Run the Application with Docker Compose
 

@@ -6,19 +6,19 @@
 
 # Docker Compose
 
-Docker Compose is a tool for defining and managing multi-container Docker applications. It allows you to define a multi-container application in a single YAML file, making it easier to configure and manage containers.
+- Docker Compose is a tool for defining and managing multi-container Docker applications. It allows you to define a multi-container application in a single YAML file, making it easier to configure and manage containers.
 
-Compose simplifies the orchestration of multiple services, such as databases, backend services, and front-end apps, by automating the management of their networking, volumes, and dependencies.
+- Compose simplifies the orchestration of multiple services, such as databases, backend services, and front-end apps, by automating the management of their networking, volumes, and dependencies.
 
 # Key benefits of Docker Compose:
 
-**Multi-container management:** Define all the services (containers) for your application in a single docker-compose.yml file.
+- **Multi-container management:** Define all the services (containers) for your application in a single docker-compose.yml file.
 
-**Networking:** Services in the same Compose application can communicate with each other using simple service names, without having to worry about IP addresses.
+- **Networking:** Services in the same Compose application can communicate with each other using simple service names, without having to worry about IP addresses.
 
-**Scaling:** Docker Compose makes it easy to scale services by adjusting the number of replicas for a container.
+- **Scaling:** Docker Compose makes it easy to scale services by adjusting the number of replicas for a container.
 
-**Environment variables:** Simplifies configuration by using environment variables to keep the application portable.
+- **Environment variables:** Simplifies configuration by using environment variables to keep the application portable.
 
 # Multi-stage Docker Builds
 
@@ -26,19 +26,19 @@ Compose simplifies the orchestration of multiple services, such as databases, ba
 
 # Key benefits of Multi-stage Docker builds:
 
-Reduced image size: By discarding unnecessary dependencies and tools after the build stage, you can significantly reduce the size of the final image.
+- **Reduced image size:** By discarding unnecessary dependencies and tools after the build stage, you can significantly reduce the size of the final image.
 
-Separation of concerns: Each stage is isolated, which leads to better organization of the build process.
+- **Separation of concerns:** Each stage is isolated, which leads to better organization of the build process.
 
-Improved security: Only the necessary files are included in the final image, reducing the attack surface of your application.
+- **Improved security:** Only the necessary files are included in the final image, reducing the attack surface of your application.
 
-Docker File and Docker Compose Setup
+# Docker File and Docker Compose Setup
 
-In this section, we will create and configure the necessary files to build a Java-based expense tracker application using Docker. We will walk through each file, including the Dockerfile for building the application, the multi-stage Dockerfile for optimized image creation, and the Docker Compose file for managing services like MySQL and the Java app.
+- In this section, we will create and configure the necessary files to build a Java-based expense tracker application using Docker. We will walk through each file, including the Dockerfile for building the application, the multi-stage Dockerfile for optimized image creation, and the Docker Compose file for managing services like MySQL and the Java app.
 
-# Prerequisites
+## Prerequisites
 
-Before diving into the tutorial, ensure you have Docker and Git installed on your machine.
+- Before diving into the tutorial, ensure you have Docker and Git installed on your machine.
 
 ## Step 1: Clone the Project Repository
 
@@ -88,15 +88,15 @@ docker images
 
 - In the multi-stage build approach, we separate the build process into two stages, one for compiling the application and another for running it.
 
-### Multi-stage Dockerfile Preview:
+- ### Multi-stage Dockerfile Preview:
 
 [Dockerfile Preview](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/java-springboot-docker/Dockerfile)
 
 - In this setup:
 
-Stage 1 uses Maven to compile the application and create the JAR file.
+-Stage 1 uses Maven to compile the application and create the JAR file.
 
-Stage 2 uses a smaller base image (openjdk:17-alpine), which significantly reduces the size of the final image by only including the necessary runtime files.
+-Stage 2 uses a smaller base image (openjdk:17-alpine), which significantly reduces the size of the final image by only including the necessary runtime files.
 
 ![docker-build](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/java-springboot-docker/image/4-docker-multi-stage-reduced-size.png)
 
@@ -109,11 +109,11 @@ Stage 2 uses a smaller base image (openjdk:17-alpine), which significantly reduc
 
 - In this file:
 
-The java_app service is responsible for building and running the Java application.
+-The java_app service is responsible for building and running the Java application.
 
-The mysql_db service handles the MySQL database and the depends_on keyword ensures that the database container is ready before the Java application starts.
+-The mysql_db service handles the MySQL database and the depends_on keyword ensures that the database container is ready before the Java application starts.
 
-Health checks are defined to ensure both services are running properly.
+-Health checks are defined to ensure both services are running properly.
 
 ## Step 5: Run the Application with Docker Compose
 

@@ -135,7 +135,7 @@ docker-compose up
 
 # Summary
 
-- In this blog, we demonstrated the use of Docker Compose and Multi-stage Docker builds to streamline the process of containerizing a Java-based expense tracker application.
+- In this documentation, we demonstrated the use of Docker Compose and Multi-stage Docker builds to streamline the process of containerizing a Java-based expense tracker application.
 
 - By using Docker Compose, we easily managed multiple services, such as the Java app and MySQL database, while the multi-stage Docker build process helped optimize the application’s container image. These practices lead to smaller, more efficient images and simplify the management of complex, multi-container applications.
 

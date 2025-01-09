@@ -55,8 +55,7 @@ CREATE database devops;
 - Navigate to the Flask app directory and build the Docker image by creating a Dockerfile.
 
 - Dockerfile Preview:
-
-[Dockerfile]()
+[Dockerfile](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/Dockerfile)
 
 - Command to build Docker image:
 
@@ -166,7 +165,8 @@ docker run -d --name mysql --network two-tier -v mysql-data:/var/lib/mysql -e MY
 
 ![delete-composefile](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/24-delete-compose-file.png)
 
-[Docker Compose File]()
+- Docker Compose File Preview:
+[Docker Compose File](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/docker-compose.yml)
 
 ## Deploy with Docker Compose
 

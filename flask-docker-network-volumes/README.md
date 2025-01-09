@@ -1,190 +1,191 @@
 # Docker Network & Volumes: Deploying a Two-Tier Flask App with MySQL
 
-Introduction
+## Introduction
 
-DevOps methodologies, emphasizing automation and collaboration, have revolutionized the software development lifecycle. This article will explore using Docker to deploy a two-tier Flask application integrated with a MySQL database. The project highlights key concepts such as Docker volumes, which ensure data persistence, and Docker networks, which facilitate seamless communication between containers, showcasing their pivotal role in modern containerized application development.
+- DevOps methodologies, emphasizing automation and collaboration, have revolutionized the software development lifecycle. This article will explore using Docker to deploy a two-tier Flask application integrated with a MySQL database. The project highlights key concepts such as Docker volumes, which ensure data persistence, and Docker networks, which facilitate seamless communication between containers, showcasing their pivotal role in modern containerized application development.
 
-Prerequisites
+## Prerequisites
 
-Before diving into the tutorial, make sure you have Docker and Git installed on your machine.
+- Before diving into the tutorial, make sure you have Docker and Git installed on your machine.
 
-Step 1: Clone the Repository
+## Step 1: Clone the Repository
 
-Begin by cloning the project repository from GitHub:
+- Begin by cloning the project repository from GitHub:
 
-Step 2: Run MySQL Container
+![git-clone](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/1-git-clone.png)
 
-Pull the MySQL image and start the MySQL container with the following command:
+## Step 2: Run MySQL Container
 
+- Pull the MySQL image and start the MySQL container with the following command:
+
+```bash
 docker pull mysql
 docker run -d -e MYSQL_ROOT_PASSWORD=root mysql
+```
 
-Step 3: Create a new database inside the MySQL container
+![docker-pull-mysql](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/4-docker-pull-mysql.png)
 
-To create a new database, exec into the container and run these commands:
+![docker-run-mysql](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/5-docker-run-mysql.png)
 
+## Step 3: Create a new database inside the MySQL container
+
+- To create a new database, exec into the container and run these commands:
+
+```bash
 docker ps
 docker exec -it <container id> bash
 mysql -u root -p
+```
 
-List databases and create a new database named ‘devops’:
+![docker-exec-mysql](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/6-docker-exec-mysql.png)
 
+![mysql-db](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/7-mysql-db.png)
+
+- List databases and create a new database named ‘devops’:
+
+```bash
 SHOW databases;
 CREATE database devops;
+```
 
-Step 4: Build the Flask App Image
+![create-db-devops](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/8-create-db-devops.png)
 
-Navigate to the Flask app directory and build the Docker image by creating a Dockerfile.
+## Step 4: Build the Flask App Image
 
-Dockerfile Preview:
+- Navigate to the Flask app directory and build the Docker image by creating a Dockerfile.
 
-# Use an official Python runtime as the base image
-FROM python:3.9-slim
+- Dockerfile Preview:
 
-# Set the working directory in the container
-WORKDIR /app
+[Dockerfile]()
 
-# install required packages for system
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y gcc default-libmysqlclient-dev pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+- Command to build Docker image:
 
-# Copy the requirements file into the container
-COPY requirements.txt .
-
-# Install app dependencies
-RUN pip install mysqlclient
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application code
-COPY . .
-
-# Specify the command to run your application
-CMD ["python", "app.py"]
-
-Command to build Docker image:
-
+```bash
 docker build -t two-tier-flask-backend .
+```
 
-Step 5: Run Flask App Container
+![docker-build](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/3-docker-build.png)
 
-Run the Flask app container using the below command:
+## Step 5: Run Flask App Container
 
+- Run the Flask app container using the below command:
+
+```bash
 docker run -d -p 5000:5000 -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_DB=devops two-tier-flask-backend:latest
+```
 
-Step 6: Creating a Docker Network
+![docker-run-flask](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/9-docker-run-flask-backend.png)
 
-We need to create a Docker network to allow the containers to communicate with each other. As shown in the container logs, they won't be able to connect properly without it.
+## Step 6: Creating a Docker Network
 
-Stop both containers and remove them for now:
+- We need to create a Docker network to allow the containers to communicate with each other. As shown in the container logs, they won't be able to connect properly without it.
 
+![docker-logs](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/10-docker-logs.png)
+
+- Stop both containers and remove them for now:
+
+```bash
 docker stop <container id> && docker rm <container id>
+```
 
-Create a Docker network named ‘two-tier’ and run both MySQL and Flask containers:
+![remove-mysql-container](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/11-remove-mysql-container.png)
 
+- Create a Docker network named ‘two-tier’ and run both MySQL and Flask containers:
+
+```bash
 docker network create two-tier -d bridge
 docker run -d --name mysql --network two-tier -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=devops mysql
 docker run -d -p 5000:5000 --network two-tier -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_DB=devops two-tier-flask-backend:latest
+```
 
-Use the inspect command to view the containers connected to the ‘two-tier’ Docker network.
+![create-network](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/12-create-nw-run-both-container.png)
 
+- Use the inspect command to view the containers connected to the ‘two-tier’ Docker network.
+
+```bash
 docker network ls
 docker network inspect two-tier
+```
 
-Step 7: View the application
+![docker-network](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/13-docker-nw-ls.png)
 
-Open your browser and go to http://<ec2-public-ip>:5000 to access the application.
+![docker-inspect](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/14-docker-inspecting.png)
 
-Step-8 Check data persistency in the database
+## Step 7: View the application
 
-Check the data entries inside the database using the exec command.
+- Open your browser and go to http://<ec2-public-ip>:5000 to access the application.
 
-When the MySQL container is stopped and removed, and you attempt to exec into a newly started container, all previous data will be lost, as containers by default do not persist data between restarts unless configured to use persistent storage.
+![output](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/15-output-app.png)
 
-Step 9: Creating a Docker Volume
+## Step-8 Check data persistency in the database
 
-Create a Docker network to facilitate communication between the Flask app and MySQL containers:
+- Check the data entries inside the database using the exec command.
 
+![docker-exec](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/16-docker-exec-mysql.png)
+
+![mysql-table](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/17-mysql-table-db.png)
+
+- When the MySQL container is stopped and removed, and you attempt to exec into a newly started container, all previous data will be lost, as containers by default do not persist data between restarts unless configured to use persistent storage.
+
+![remove-mysql](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/18-remove-mysql.png)
+
+![data-gone](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/19-data-gone.png)
+
+![database-gone](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/20-data-gone.png)
+
+## Step 9: Creating a Docker Volume
+
+- Create a Docker network to facilitate communication between the Flask app and MySQL containers:
+
+```bash
 docker volume create mysql-data
 docker inspect mysql-data
+```
 
-Stop and remove the MySQL container, then restart it using the command below:
+![create-docker-volume](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/21-create-docker-volume.png)
 
+- Stop and remove the MySQL container, then restart it using the command below:
+
+```bash
 docker run -d --name mysql --network two-tier -v mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=devops mysql
+```
 
-Now, even if the MySQL container is stopped and removed, all the database data will persist in the volume we created, ensuring that it remains intact across container restarts.
+![run-mysql-volume](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/22-running-mysql-with-volume-bind.png)
 
-Simplify Deployment with Docker Compose
+- Now, even if the MySQL container is stopped and removed, all the database data will persist in the volume we created, ensuring that it remains intact across container restarts.
 
-So far, we've meticulously followed the step-by-step process for deploying our two-tier Flask app using individual Docker commands. Now, let's take it a step further and streamline the entire deployment process with Docker Compose.
+![volume-data](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/23-volume-data.png)
 
-Docker Compose Configuration
+# Simplify Deployment with Docker Compose
 
-Create a docker-compose.yml file in your project directory with the following content:
+- So far, we've meticulously followed the step-by-step process for deploying our two-tier Flask app using individual Docker commands. Now, let's take it a step further and streamline the entire deployment process with Docker Compose.
 
-version: "3.8"
+## Docker Compose Configuration
 
-services:
-  mysql:
-    container_name: mysql
-    image: mysql
-    environment:
-      MYSQL_DATABASE: "devops"
-      MYSQL_ROOT_PASSWORD: "root"
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - two-tier
-    restart: always
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 60s
+- Create a docker-compose.yml file in your project directory with the following content:
 
-  flask:
-    build:
-      context: .
-    container_name: two-tier-flask-backend
-    ports:
-      - "5000:5000"
-    environment:
-      MYSQL_HOST: mysql
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYDQL_DB: devops
-    networks:
-      - two-tier
-    depends_on:
-      - mysql
-    restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f htttp://localhost:5000/health || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
+![delete-composefile](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/24-delete-compose-file.png)
 
-volumes:
-  mysql-data:
- 
-networks:
-  two-tier:
+[Docker Compose File]()
 
-Deploy with Docker Compose
+## Deploy with Docker Compose
 
-With the docker-compose.yml file in place, deploying the entire stack becomes a breeze.
+- With the docker-compose.yml file in place, deploying the entire stack becomes a breeze.
 
-First, installation of docker-compose on the machine is required. Then run the following command:
+- First, installation of docker-compose on the machine is required. Then run the following command:
 
+```bash
 docker-compose up
 or
 docker-compose up -d
+```
 
-Conclusion
+![install-docker-compose](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/25-install-docker-compose.png)
 
-This article provides a comprehensive guide on deploying a two-tier Flask application with a MySQL database using Docker. It covers essential steps such as running MySQL and Flask containers, creating Docker networks and volumes for data persistence and container communication, and finally, simplifying the deployment process with Docker Compose. The tutorial emphasizes the importance of Docker volumes and networks in ensuring seamless integration and data retention across container restarts, showcasing their significance in modern DevOps practices.
+![docker-compose-up](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/26-docker-compose-up.png)
+
+![output](https://github.com/RutvikMangukiya/Docker-Projects/blob/master/flask-docker-network-volumes/image/19-data-gone.png)
+
+## Conclusion
+
+- This article provides a comprehensive guide on deploying a two-tier Flask application with a MySQL database using Docker. It covers essential steps such as running MySQL and Flask containers, creating Docker networks and volumes for data persistence and container communication, and finally, simplifying the deployment process with Docker Compose. The tutorial emphasizes the importance of Docker volumes and networks in ensuring seamless integration and data retention across container restarts, showcasing their significance in modern DevOps practices.

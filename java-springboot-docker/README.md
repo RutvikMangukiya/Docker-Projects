@@ -36,6 +36,10 @@
 
 - In this section, we will create and configure the necessary files to build a Java-based expense tracker application using Docker. We will walk through each file, including the Dockerfile for building the application, the multi-stage Dockerfile for optimized image creation, and the Docker Compose file for managing services like MySQL and the Java app.
 
+# Application Code Repository
+
+- [Application Code](https://github.com/RutvikMangukiya/Expenses-Tracker-WebApp)
+
 ## Prerequisites
 
 - Before diving into the tutorial, ensure you have Docker and Git installed on your machine.

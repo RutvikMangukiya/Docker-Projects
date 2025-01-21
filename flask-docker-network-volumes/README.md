@@ -2,7 +2,11 @@
 
 ## Introduction
 
-- DevOps methodologies, emphasizing automation and collaboration, have revolutionized the software development lifecycle. This article will explore using Docker to deploy a two-tier Flask application integrated with a MySQL database. The project highlights key concepts such as Docker volumes, which ensure data persistence, and Docker networks, which facilitate seamless communication between containers, showcasing their pivotal role in modern containerized application development.
+- DevOps methodologies, emphasizing automation and collaboration, have revolutionized the software development lifecycle. This documentation will explore using Docker to deploy a two-tier Flask application integrated with a MySQL database. The project highlights key concepts such as Docker volumes, which ensure data persistence, and Docker networks, which facilitate seamless communication between containers, showcasing their pivotal role in modern containerized application development.
+
+# Application Code Repository
+
+- [Application Code](https://github.com/RutvikMangukiya/two-tier-flask-app)
 
 ## Prerequisites
 
@@ -188,4 +192,4 @@ docker-compose up -d
 
 ## Conclusion
 
-- This article provides a comprehensive guide on deploying a two-tier Flask application with a MySQL database using Docker. It covers essential steps such as running MySQL and Flask containers, creating Docker networks and volumes for data persistence and container communication, and finally, simplifying the deployment process with Docker Compose. The tutorial emphasizes the importance of Docker volumes and networks in ensuring seamless integration and data retention across container restarts, showcasing their significance in modern DevOps practices.
+- This documentation provides a comprehensive guide on deploying a two-tier Flask application with a MySQL database using Docker. It covers essential steps such as running MySQL and Flask containers, creating Docker networks and volumes for data persistence and container communication, and finally, simplifying the deployment process with Docker Compose. The tutorial emphasizes the importance of Docker volumes and networks in ensuring seamless integration and data retention across container restarts, showcasing their significance in modern DevOps practices.
